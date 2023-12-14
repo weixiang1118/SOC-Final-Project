@@ -1,0 +1,21 @@
+rm -f counter_la_comb.hex
+
+riscv32-unknown-elf-gcc -Wl,--no-warn-rwx-segments -g \
+	--save-temps \
+	-Xlinker -Map=output.map \
+	-I../../firmware \
+	-march=rv32i -mabi=ilp32 -D__vexriscv__ \
+	-Wl,-Bstatic,-T,../../firmware/sections.lds,--strip-discarded \
+	-ffreestanding -nostartfiles -o counter_la_comb.elf ../../firmware/crt0_vex.S ../../firmware/isr.c comb.c counter_la_comb.c
+# -nostartfiles	
+riscv32-unknown-elf-objcopy -O verilog counter_la_comb.elf counter_la_comb.hex
+riscv32-unknown-elf-objdump -D counter_la_comb.elf > counter_la_comb.out
+
+# to fix flash base address
+sed -ie 's/@10/@00/g' counter_la_comb.hex
+
+iverilog -Ttyp -DFUNCTIONAL -DSIM -DUNIT_DELAY=#1 \
+	-f./include.rtl.list -o counter_la_comb.vvp counter_la_comb_tb.v
+
+vvp counter_la_comb.vvp
+rm -f counter_la_comb.vvp counter_la_comb.elf counter_la_comb.hexe
