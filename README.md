@@ -1,29 +1,8 @@
 # WorkLoad Optimize SOC (WLOS) Baseline
 
-### Simulation for matrix multiplication
+### Simulation for FIR, Matrix Mult,qsort,uart
 ```sh
-cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/counter_la_mm
-source run_clean
-source run_sim
-```
-
-### Simulation for FIR
-```sh
-cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/counter_la_fir
-source run_clean
-source run_sim
-```
-
-### Simulation for qsort
-```sh
-cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/counter_la_qs
-source run_clean
-source run_sim
-```
-
-### Simulation for uart
-```sh
-cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart
+cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/comb
 source run_clean
 source run_sim
 ```
@@ -34,6 +13,5 @@ source run_sim
 cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/vivado
 source run_vivado
 ```
-
 
 # lab-wlos_baseline
