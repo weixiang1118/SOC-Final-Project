@@ -97,6 +97,7 @@ void main()
 	// Set UART clock to 64 kbaud (enable before I/O configuration)
 	// reg_uart_clkdiv = 625;
 	reg_uart_enable = 1;
+	reg_wb_enable = 1;
 	
 	// Now, apply the configuration
 	reg_mprj_xfer = 1;
@@ -108,7 +109,16 @@ void main()
 	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
+	
+	#ifdef USER_PROJ_IRQ0_EN	
+	// unmask USER_IRQ_0_INTERRUPT
+	mask = irq_getmask();
+	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
+	irq_setmask(mask);
+	// enable user_irq_0_ev_enable
+	user_irq_0_ev_enable_write(1);	
+	#endif
+	
 	// Flag start of the test 
 	reg_mprj_datal = 0xAB400000;
 
@@ -130,35 +140,11 @@ void main()
 	reg_mprj_datal = *(tmp_fir+8) << 16;
 	reg_mprj_datal = *(tmp_fir+9) << 16;
 	reg_mprj_datal = *(tmp_fir+10) << 16;
-	reg_mprj_datal = 0xAB510000;
+	reg_mprj_datal = 0xAB550000;
 	
 	//MM
 
-	// Set UART clock to 64 kbaud (enable before I/O configuration)
-	// reg_uart_clkdiv = 625;
-	reg_uart_enable = 1;
-	
-	// Now, apply the configuration
-	reg_mprj_xfer = 1;
-	while (reg_mprj_xfer == 1);
-
-        // Configure LA probes [31:0], [127:64] as inputs to the cpu 
-	// Configure LA probes [63:32] as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
-	// Flag start of the test 
-	//reg_mprj_datal = 0xAB400000;
 	reg_mprj_datal = 0xAB410000;
-
-	// Set Counter value to zero through LA probes [63:32]
-	reg_la1_data = 0x00000000;
-
-	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    
-
 	int *tmp_MM = matmul();
 	reg_mprj_datal = *tmp_MM << 16;
 	reg_mprj_datal = *(tmp_MM+1) << 16;
@@ -169,40 +155,8 @@ void main()
 	reg_mprj_datal = 0xAB520000;
 	
 	//qsort
-
-	// Set UART clock to 64 kbaud (enable before I/O configuration)
-	// reg_uart_clkdiv = 625;
-	reg_uart_enable = 1;
-	
-	// Now, apply the configuration
-	reg_mprj_xfer = 1;
-	while (reg_mprj_xfer == 1);
-
-        // Configure LA probes [31:0], [127:64] as inputs to the cpu 
-	// Configure LA probes [63:32] as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
-	// Flag start of the test 
-	//reg_mprj_datal = 0xAB400000;
-	reg_mprj_datal = 0xAB420000;
-
-	// Set Counter value to zero through LA probes [63:32]
-	reg_la1_data = 0x00000000;
-
-	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    
-
-/*
-	while (1) {
-		if (reg_la0_data_in > 0x1F4) {
-			reg_mprj_datal = 0xAB410000;
-			break;
-		}
-	}
-*/	
+  
+	reg_mprj_datal = 0xAB420000;	
 	int* tmp_qs = qsort();
 	reg_mprj_datal = *tmp_qs << 16;
 	reg_mprj_datal = *(tmp_qs+1) << 16;
@@ -219,41 +173,9 @@ void main()
 	
 	reg_mprj_datal = 0xAB530000;
 	
-	//uart
-	//reg_spi_enable = 1;
-    	reg_wb_enable = 1;
-
-
-	/* Apply configuration */
-	reg_mprj_xfer = 1;
-	while (reg_mprj_xfer == 1);
-
-        // Configure LA probes [31:0], [127:64] as inputs to the cpu 
-	// Configure LA probes [63:32] as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
-	// Flag start of the test 
-	//reg_mprj_datal = 0xAB400000;
-
-	// Set Counter value to zero through LA probes [63:32]
-	reg_la1_data = 0x00000000;
-
-	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    
 
 	reg_mprj_datal = 0xAB510000;
 
-#ifdef USER_PROJ_IRQ0_EN	
-	// unmask USER_IRQ_0_INTERRUPT
-	mask = irq_getmask();
-	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
-	irq_setmask(mask);
-	// enable user_irq_0_ev_enable
-	user_irq_0_ev_enable_write(1);	
-#endif
 }		
 
 

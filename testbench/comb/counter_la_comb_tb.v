@@ -33,6 +33,7 @@ module counter_la_comb_tb;
 	reg [7:0] tx_data;
 	wire tx_busy;
 	wire tx_clear_req;
+	reg [99:0] start_time,end_time;
 
 	assign checkbits  = mprj_io[31:16];
 	assign uart_tx = mprj_io[6];
@@ -159,30 +160,39 @@ module counter_la_comb_tb;
 		*/
 	end
 
-	initial begin				//AB40-AB51
+	initial begin
+		// uart
+		send_data_2;
+		
+		//wait(checkbits == 16'hAB51);
+		
+		//wait(checkbits == 61);
+		//send_data_1;
+		//wait(checkbits == 15);
+		//#10000;
+		//$display("LA Test 1 passed");				//AB40-AB51
 		wait(checkbits == 16'hAB40);
-		
-		//#2000000;
-		
+		start_time = $time;
 		// fir
 		//wait(checkbits == 16'hAB40);
 		$display("FIR started");
 		
-		//wait(checkbits == 16'h0000);
-		//$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		//wait(checkbits == 16'hFFF6);
-		//$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		//wait(checkbits == 16'hFFE3);
-		//$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		//wait(checkbits == 16'h0023);
-		//$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
-		wait(checkbits == 16'hAB51);
-		
-		$display("FIR done");
+		wait(checkbits == 16'hFFF6);
+		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
+		wait(checkbits == 16'hFFE7);
+		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
+		wait(checkbits == 16'h009E);
+		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
+		wait(checkbits == 16'h02DC);
+		$display("Call function fir() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
+		wait(checkbits == 16'hAB55);
+		end_time = $time;
+		$display("FIR done,Execution time: %0t ns",end_time - start_time);
 
 		
 		// MM
 		wait(checkbits == 16'hAB41);
+		start_time = $time;
 		$display("MM started");
 		wait(checkbits == 16'h003E);
 		$display("Call function matmul() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
@@ -193,11 +203,13 @@ module counter_la_comb_tb;
 		wait(checkbits == 16'h0050);
 		$display("Call function matmul() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
 		wait(checkbits == 16'hAB52);
-		$display("MM done");
+		end_time = $time;
+		$display("MM done,Execution time: %0t ns",end_time - start_time);
 
 		
 		// qsort
 		wait(checkbits == 16'hAB42);
+		start_time = $time;
 		$display("qsort started");
 		wait(checkbits == 16'h0028);
 		$display("Call function qsort() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
@@ -208,24 +220,13 @@ module counter_la_comb_tb;
 		wait(checkbits == 16'h0a6d);
 		$display("Call function qsort() in User Project BRAM (mprjram, 0x38000000) return value passed, 0x%x", checkbits);
 		wait(checkbits == 16'hAB53);
-		$display("qsort done");
+		end_time = $time;
+		$display("qsort done,Execution time: %0t ns",end_time - start_time);
 
-		$display("UART started");
+		//$display("UART started");
 
-		// uart
-		send_data_2;
-		
-		//wait(checkbits == 16'hAB51);
-		
-		//wait(checkbits == 61);
-		//send_data_1;
-		//wait(checkbits == 15);
-		//#10000;
-		//$display("LA Test 1 passed");
 
 		wait(checkbits == 16'hAB51);
-		#1000000;
-		$display("UART done");
 		$display("LA Test passed");
 		$finish;		
 	end
@@ -250,7 +251,7 @@ module counter_la_comb_tb;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
-		$display("tx complete 2");
+		$display("tx complete 2,Execution time: %0t ns",$time);
 		
 	end endtask
 
