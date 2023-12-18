@@ -169,11 +169,10 @@ void main()
 	reg_mprj_datal = *(tmp_qs+8) << 16;
 	reg_mprj_datal = *(tmp_qs+9) << 16;
 	
-	reg_mprj_datal = *tmp_qs << 16;
 	
 	reg_mprj_datal = 0xAB530000;
+	reg_mprj_datal = *tmp_qs << 16;
 	
-
 	reg_mprj_datal = 0xAB510000;
 
 }		

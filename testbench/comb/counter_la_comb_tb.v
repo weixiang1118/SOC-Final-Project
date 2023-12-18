@@ -143,10 +143,10 @@ module counter_la_comb_tb;
 	initial begin
 		$dumpfile("comb.vcd");
 		$dumpvars(0, counter_la_comb_tb);
-		/*
+		
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (200) begin
-			repeat (10000) @(posedge clock);
+		repeat (500) begin
+			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
 		$display("%c[1;31m",27);
@@ -157,20 +157,15 @@ module counter_la_comb_tb;
 		`endif
 		$display("%c[0m",27);
 		$finish;
-		*/
+		
 	end
 
 	initial begin
 		// uart
+		fork 
 		send_data_2;
 		
-		//wait(checkbits == 16'hAB51);
-		
-		//wait(checkbits == 61);
-		//send_data_1;
-		//wait(checkbits == 15);
-		//#10000;
-		//$display("LA Test 1 passed");				//AB40-AB51
+		begin
 		wait(checkbits == 16'hAB40);
 		start_time = $time;
 		// fir
@@ -224,11 +219,22 @@ module counter_la_comb_tb;
 		$display("qsort done,Execution time: %0t ns",end_time - start_time);
 
 		//$display("UART started");
-
-
+		
+		end
+		
+		join
 		wait(checkbits == 16'hAB51);
 		$display("LA Test passed");
-		$finish;		
+		//#100000;
+		//$finish;
+		//wait(checkbits == 16'hAB51);
+		
+		//wait(checkbits == 61);
+		//send_data_1;
+		//wait(checkbits == 15);
+		//#10000;
+		//$display("LA Test 1 passed");				//AB40-AB51
+				
 	end
 
 	task send_data_1;begin
@@ -255,6 +261,8 @@ module counter_la_comb_tb;
 		
 	end endtask
 
+
+	
 	initial begin
 		RSTB <= 1'b0;
 		CSB  <= 1'b1;		// Force CSB high
