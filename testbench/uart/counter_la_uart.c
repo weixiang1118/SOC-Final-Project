@@ -72,6 +72,8 @@ void main()
 
     //reg_spi_enable = 1;
     reg_wb_enable = 1;
+    reg_uart_enable = 1;
+    
 
     reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -112,6 +114,14 @@ void main()
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
+	#ifdef USER_PROJ_IRQ0_EN	
+	// unmask USER_IRQ_0_INTERRUPT
+	mask = irq_getmask();
+	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
+	irq_setmask(mask);
+	// enable user_irq_0_ev_enable
+	user_irq_0_ev_enable_write(1);	
+	#endif
 
         // Configure LA probes [31:0], [127:64] as inputs to the cpu 
 	// Configure LA probes [63:32] as outputs from the cpu
@@ -141,23 +151,15 @@ void main()
 
 	/*for(int i = 0; i < 4; i++){
 		uart_write(i);
-	}*/
+	}
 
-	//uart_write_string("TEST!");
+	uart_write_string("TEST!");
 
 	//reg_mprj_datal = uart_isr();
 
 	//print("\n");
-	//print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
+	//print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!*/
 	reg_mprj_datal = 0xAB510000;
 
-#ifdef USER_PROJ_IRQ0_EN	
-	// unmask USER_IRQ_0_INTERRUPT
-	mask = irq_getmask();
-	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
-	irq_setmask(mask);
-	// enable user_irq_0_ev_enable
-	user_irq_0_ev_enable_write(1);	
-#endif
 }
 

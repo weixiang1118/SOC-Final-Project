@@ -1,0 +1,63 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Mon Dec 25 06:53:06 2023
+[*]
+[dumpfile] "/home/ubuntu/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart/uart.vcd"
+[dumpfile_mtime] "Mon Dec 25 06:25:02 2023"
+[dumpfile_size] 864190359
+[savefile] "/home/ubuntu/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart/uart.gtkw"
+[timestart] 0
+[size] 2560 1190
+[pos] -1 -1
+*-29.481592 1378762500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] uart_tb.
+[treeopen] uart_tb.uut.
+[treeopen] uart_tb.uut.mprj.
+[treeopen] uart_tb.uut.mprj.uart.
+[treeopen] uart_tb.uut.padframe.
+[treeopen] uart_tb.uut.soc.
+[sst_width] 276
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 349
+@200
+-
+-uart_tb
+@28
+uart_tb.clock
+@c00028
+uart_tb.uut.mprj.uart.user_irq[2:0]
+@28
+(0)uart_tb.uut.mprj.uart.user_irq[2:0]
+(1)uart_tb.uut.mprj.uart.user_irq[2:0]
+(2)uart_tb.uut.mprj.uart.user_irq[2:0]
+@1401200
+-group_end
+@22
+uart_tb.checkbits[15:0]
+@28
+uart_tb.tx_start
+@24
+uart_tb.tx_data[7:0]
+@28
+uart_tb.tx_busy
+uart_tb.tx_clear_req
+uart_tb.uart_rx
+uart_tb.uart_tx
+@200
+-tb_uart
+@28
+uart_tb.tbuart.tr_state[2:0]
+@24
+uart_tb.tbuart.tx_data[7:0]
+uart_tb.tbuart.recv_pattern[7:0]
+uart_tb.tbuart.tx_pattern[7:0]
+@200
+-uart
+@24
+uart_tb.uut.mprj.uart.tx_data[7:0]
+uart_tb.uut.mprj.uart.rx_data[7:0]
+@28
+uart_tb.uut.mprj.uart.receive.rx_finish
+[pattern_trace] 1
+[pattern_trace] 0

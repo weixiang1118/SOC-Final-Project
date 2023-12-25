@@ -144,7 +144,7 @@ module uart_tb;
 		$dumpvars(0, uart_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (200) begin
+		repeat (300) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -163,6 +163,7 @@ module uart_tb;
 		$display("LA Test 1 started");
 
 		send_data_2;
+		//send_data_1;
 		wait(checkbits == 16'hAB51);
 		$display("LA Test 1 passed");
 		//wait(checkbits == 61);
@@ -192,6 +193,17 @@ module uart_tb;
 		@(posedge clock);
 		tx_start = 1;
 		tx_data = 61;
+		
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		wait(tx_clear_req);
+		tx_start = 1;
+		//#(3105387.5-2552067);
+
+		//wait(!tx_clear_req);
+		tx_data = 15;
+		
 		
 		#50;
 		wait(!tx_busy);
