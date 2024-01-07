@@ -1,63 +1,59 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Mon Dec 25 06:53:06 2023
+[*] Wed Dec 27 06:47:54 2023
 [*]
-[dumpfile] "/home/ubuntu/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart/uart.vcd"
-[dumpfile_mtime] "Mon Dec 25 06:25:02 2023"
+[dumpfile] "/home/ubuntu/Desktop/lab-wlos_baseline/testbench/uart/uart.vcd"
+[dumpfile_mtime] "Tue Dec 26 08:32:32 2023"
 [dumpfile_size] 864190359
-[savefile] "/home/ubuntu/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart/uart.gtkw"
+[savefile] "/home/ubuntu/Desktop/lab-wlos_baseline/testbench/uart/uart.gtkw"
 [timestart] 0
-[size] 2560 1190
+[size] 1848 906
 [pos] -1 -1
-*-29.481592 1378762500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-29.912823 3281262500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] uart_tb.
 [treeopen] uart_tb.uut.
 [treeopen] uart_tb.uut.mprj.
-[treeopen] uart_tb.uut.mprj.uart.
-[treeopen] uart_tb.uut.padframe.
-[treeopen] uart_tb.uut.soc.
-[sst_width] 276
-[signals_width] 230
+[sst_width] 233
+[signals_width] 150
 [sst_expanded] 1
-[sst_vpaned_height] 349
-@200
--
--uart_tb
+[sst_vpaned_height] 251
 @28
 uart_tb.clock
-@c00028
-uart_tb.uut.mprj.uart.user_irq[2:0]
-@28
-(0)uart_tb.uut.mprj.uart.user_irq[2:0]
-(1)uart_tb.uut.mprj.uart.user_irq[2:0]
-(2)uart_tb.uut.mprj.uart.user_irq[2:0]
-@1401200
--group_end
 @22
 uart_tb.checkbits[15:0]
 @28
 uart_tb.tx_start
-@24
+@c00024
 uart_tb.tx_data[7:0]
 @28
-uart_tb.tx_busy
+(0)uart_tb.tx_data[7:0]
+(1)uart_tb.tx_data[7:0]
+(2)uart_tb.tx_data[7:0]
+(3)uart_tb.tx_data[7:0]
+(4)uart_tb.tx_data[7:0]
+(5)uart_tb.tx_data[7:0]
+(6)uart_tb.tx_data[7:0]
+(7)uart_tb.tx_data[7:0]
+@1401200
+-group_end
+@28
 uart_tb.tx_clear_req
 uart_tb.uart_rx
 uart_tb.uart_tx
 @200
--tb_uart
-@28
-uart_tb.tbuart.tr_state[2:0]
-@24
-uart_tb.tbuart.tx_data[7:0]
-uart_tb.tbuart.recv_pattern[7:0]
-uart_tb.tbuart.tx_pattern[7:0]
-@200
 -uart
+@28
+uart_tb.uut.mprj.uart.user_irq[2:0]
+uart_tb.uut.mprj.uart.tx_start
 @24
 uart_tb.uut.mprj.uart.tx_data[7:0]
+@28
+uart_tb.uut.mprj.uart.tx
+uart_tb.uut.mprj.uart.rx_busy
+@25
 uart_tb.uut.mprj.uart.rx_data[7:0]
 @28
-uart_tb.uut.mprj.uart.receive.rx_finish
+uart_tb.uut.mprj.uart.rx_finish
+uart_tb.uut.mprj.uart.rx
 [pattern_trace] 1
 [pattern_trace] 0
