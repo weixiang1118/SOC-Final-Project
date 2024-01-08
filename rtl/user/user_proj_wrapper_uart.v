@@ -78,7 +78,7 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 wire wb_valid;
-assign wb_valid = (wbs_adr_i[31:8] == 32'h3000_00) ? wbs_cyc_i && wbs_stb_i : 1'b0;
+assign wb_valid = (wbs_adr_i[31:8] == 32'h3000_00) ? wbs_stb_i : 1'b0;
 
 /*--------------------------------------*/
 /* User project is instantiated  here   */
@@ -93,8 +93,8 @@ uart uart (
 
     // MGMT SoC Wishbone Slave
     .wb_valid(wb_valid),
-    //.wbs_stb_i(wbs_stb_i),
-    //.wbs_cyc_i(wbs_cyc_i),
+    .wbs_stb_i(wbs_stb_i),
+    .wbs_cyc_i(wbs_cyc_i),
     .wbs_we_i(wbs_we_i),
     .wbs_sel_i(wbs_sel_i),
     .wbs_dat_i(wbs_dat_i),

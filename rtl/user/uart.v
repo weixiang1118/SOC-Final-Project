@@ -5,8 +5,8 @@ module uart #(
   input wire    wb_clk_i,
   input wire    wb_rst_i,
   input wire    wb_valid,
-  //input wire    wbs_stb_i,
-  //input wire    wbs_cyc_i,
+  input wire    wbs_stb_i,
+  input wire    wbs_cyc_i,
   input wire    wbs_we_i,
   input wire    [3:0] wbs_sel_i,
   input wire    [31:0] wbs_dat_i,
@@ -72,6 +72,7 @@ module uart #(
   wire [31:0] 		rx_fifo_rdata;
   wire 	   		rx_full;
   wire    	   	rx_empty;
+  wire 		done;
 
   uart_receive receive(
     .rst_n      (~wb_rst_i  ),
@@ -82,7 +83,9 @@ module uart #(
     .rx_finish  (rx_finish  ),	// data receive finish
     .irq        (irq        ),
     .frame_err  (frame_err  ),
-    .busy       (rx_busy    )
+    .busy       (rx_busy    ),
+    .rx_full	 (rx_full    ),
+    .done	 (done)
   );
 
   uart_transmission transmission(
@@ -112,6 +115,7 @@ module uart #(
   	.i_frame_err  		(frame_err),
   	.i_rx_busy    		(rx_busy  ),
 	.o_rx_finish  		(rx_finish),
+	.done			(done),
 	
 	.o_tx		      	(tx_data	),
 	.i_tx_start_clear		(tx_start_clear), 

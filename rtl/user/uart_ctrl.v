@@ -14,6 +14,7 @@ module ctrl(
     input wire        i_rx_busy,
     input wire        i_frame_err,
     output reg        o_rx_finish,
+    input wire        done,
     
     output reg [7:0]  o_tx,
     input wire        i_tx_start_clear,
@@ -59,7 +60,25 @@ reg [31:0] rx_buffer;
 reg [31:0] tx_buffer;
 reg [31:0] stat_reg;    
 reg tx_start_local;
+reg [31:0] fifo_rx_buffer;
+wire read;
+wire write;
+reg rd_buffer;
+reg [1:0] count;
+assign read = (i_wb_adr==TX_DATA && i_wb_valid && i_wb_we)? 1: 0;
+assign write = (i_wb_adr==RX_DATA && i_wb_valid && !i_wb_we)? 1: 0;
 
+always@(posedge clk or negedge rst_n)begin
+	if(!rst_n) 
+		count <= 0;
+	else if (i_irq) count<= 0;
+	else if (rx_rd_en) 
+		count <= count +1;
+	else    count <= count;
+
+
+
+end
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         stat_reg <= 32'h0000_0005; //0101  tx rx empty
@@ -76,11 +95,13 @@ always@(posedge clk or negedge rst_n)begin
 
         if(i_frame_err && i_rx_busy)
             stat_reg[5] <= 1'b1;
-        else if(i_irq && !stat_reg[1] && !i_frame_err)
+        else if(done && !stat_reg[1] && !i_frame_err) // 01
             stat_reg[1:0] <= 2'b10;
+        else if((/*i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we*/ i_rx_busy && stat_reg[1:0]==2'b10) || i_frame_err)
+            stat_reg[1:0] <= 2'b01;
         else if(i_rx_busy && stat_reg[1:0]==2'b10)
             stat_reg[4] <= 1'b1;
-        else if((i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we && stat_reg[1:0]==2'b10) || i_frame_err)
+        else if((/*i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we*/ i_rx_busy && stat_reg[1:0]==2'b10) || i_frame_err)
             stat_reg[1:0] <= 2'b01;
     end
 end
@@ -91,25 +112,54 @@ end
     ******************************************
     ******************************************                  
 */
-//tx fifo write 
+//tx fifo write
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)begin
+        rd_buffer<= 0;
+    end else begin	     
+        if(i_wb_valid && rx_rd_en)
+            rd_buffer <= 1;
+        else
+            rd_buffer <= 0;
+    end
+end
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         tx_fifo_wdata <=32'b0;
         tx_wr_en <= 1'b0;
     end else begin	     
-        if(i_wb_valid && i_wb_we && !tx_full)begin
-            tx_fifo_wdata <= i_wb_dat;
+        if(rd_buffer && !tx_full)begin
+            tx_fifo_wdata <= rx_fifo_rdata;
             tx_wr_en <= 1'b1;
         end
-        else tx_wr_en<=1'b0;
+        else begin
+            tx_fifo_wdata <= tx_fifo_wdata;
+            tx_wr_en<=1'b0;
+        end
     end
 end
+/*always@(*)begin
+    if(!rst_n)begin
+        tx_fifo_wdata <=32'b0;
+        tx_wr_en <= 1'b0;
+    end else begin	     
+        if(rx_rd_en /*&& i_wb_we && !tx_full)begin
+            tx_fifo_wdata <= rx_fifo_rdata;
+            tx_wr_en <= 1'b1;
+        end
+        else begin
+            tx_fifo_wdata <= tx_fifo_wdata;
+            tx_wr_en<=1'b0;
+        end
+    end
+end*/
 //tx fifo read 
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n || i_tx_start_clear)begin
         tx_rd_en<=0;
-    end else begin	     //i_wb_we
-        if(i_wb_valid  && i_wb_adr==TX_DATA && !i_tx_busy && !tx_empty && stat_reg[3:2]==2'b01)begin
+    end else begin
+        if (tx_rd_en) tx_rd_en <= 0;	     
+        else if(/*i_wb_valid && i_wb_we && i_wb_adr==TX_DATA &&*/ !i_tx_busy && !tx_empty && stat_reg[3:2]==2'b01 && !tx_start_local )begin
             tx_rd_en<=1;
         end
         else tx_rd_en <=0;
@@ -118,12 +168,19 @@ end
 //tx
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n || i_tx_start_clear)begin
-        tx_buffer <= 32'h00000000;
         tx_start_local <= 1'b0;
     end else begin	     //i_wb_we
-        if(i_wb_valid && tx_rd_en && i_wb_adr==TX_DATA && !i_tx_busy)begin
-            tx_buffer <= tx_fifo_rdata;
+        if(tx_rd_en  && !i_tx_busy)begin
             tx_start_local <= 1'b1;
+        end
+    end 
+end
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n || i_tx_start_clear)begin
+        tx_buffer <= 32'h00000000;
+    end else begin	     
+        if(tx_start_local)begin
+            tx_buffer <= tx_fifo_rdata;
         end
     end
 end
@@ -149,35 +206,56 @@ end
 // RX write in rx fifo
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
-        //rx_buffer <= 32'h00000000;
         rx_fifo_wdata <= 0;
         rx_wr_en <= 0;
     end else begin
-        if(i_irq /*&& !stat_reg[1] */&& !i_frame_err && !rx_full)begin 
-            //rx_buffer <= i_rx;
+        if(done && !stat_reg[1] && !i_frame_err && !rx_full)begin   //rx can write in fifo rx finish
             rx_fifo_wdata <= {24'b0,i_rx};
             rx_wr_en <= 1;
             //$display("rx_buffer: %d", i_rx);
         end
         else 
-        	  rx_wr_en <= 0;
+            rx_wr_en <= 0;
     end
 end
 // rx read 
-always@(*)begin
-      if(i_wb_adr==RX_DATA) rx_rd_en = i_wb_valid;
-      else rx_rd_en = 0;
-end
 /*always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         rx_rd_en <= 1'b0;
     end else begin			     
-        if((i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we && stat_reg[1:0]==2'b10 && !rx_empty) || i_frame_err)
+        if((o_rx_finish && stat_reg[1:0]==2'b10 && !rx_empty) || i_frame_err)
             rx_rd_en<= 1'b1;
         else 
             rx_rd_en <= 1'b0;
     end
 end*/
+/*always@(*)begin
+    if(!rst_n)
+        rx_rd_en = 1'b0;
+    else if (rx_rd_en) rx_rd_en = 0;
+    else if(!rx_empty)rx_rd_en = i_wb_valid;
+    else rx_rd_en = 1'b0;
+
+end*/
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)begin
+        rx_rd_en <= 1'b0;
+    end else begin
+    	if(rx_rd_en) rx_rd_en <= 1'b0;			     
+        else if(i_wb_valid && !rx_empty && count !=2)
+            rx_rd_en<= 1'b1;
+        else 
+            rx_rd_en <= 1'b0;
+    end
+end
+always@(posedge clk or negedge rst_n)begin
+    if(!rst_n)begin
+        fifo_rx_buffer <= 0;
+    end else begin	
+    	fifo_rx_buffer <= rx_fifo_rdata;
+    end
+end
+
 
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
@@ -186,7 +264,7 @@ always@(posedge clk or negedge rst_n)begin
         if(i_wb_valid && !i_wb_we)begin
             case(i_wb_adr)
                 RX_DATA:begin
-                    o_wb_dat <= rx_fifo_rdata;
+                    o_wb_dat <= fifo_rx_buffer;
                 end
                 STAT_REG:begin
                 	o_wb_dat <=stat_reg;
@@ -203,7 +281,7 @@ always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         o_rx_finish <= 1'b0;
     end else begin			     
-        if((stat_reg[1:0]==2'b10 && rx_wr_en) || i_frame_err)
+        if((stat_reg[1:0]==2'b10 && rx_wr_en && !i_rx_busy)  || i_frame_err)
             o_rx_finish <= 1'b1;
         else 
             o_rx_finish <= 1'b0;

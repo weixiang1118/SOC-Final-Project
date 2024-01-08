@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Mon Jan  8 19:02:50 2024
+[*]
+[dumpfile] "/home/ubuntu/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart/uart.vcd"
+[dumpfile_mtime] "Mon Jan  8 18:53:10 2024"
+[dumpfile_size] 1699105061
+[savefile] "/home/ubuntu/caravel-soc_fpga-lab/lab-wlos_baseline/testbench/uart/fifo123.gtkw"
+[timestart] 0
+[size] 2560 1190
+[pos] -1 -1
+*-30.365683 4973000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] uart_tb.
+[treeopen] uart_tb.uut.
+[treeopen] uart_tb.uut.mprj.
+[treeopen] uart_tb.uut.mprj.uart.
+[treeopen] uart_tb.uut.padframe.
+[sst_width] 233
+[signals_width] 467
+[sst_expanded] 1
+[sst_vpaned_height] 349
+@28
+uart_tb.uut.mprj.uart.wb_clk_i
+@22
+uart_tb.checkbits[15:0]
+@28
+uart_tb.uut.mprj.uart.receive.irq
+uart_tb.uut.mprj.uart.ctrl.i_rx_busy
+@24
+uart_tb.uut.mprj.uart.ctrl.i_rx[7:0]
+@28
+uart_tb.tbuart.tx_start
+@24
+uart_tb.tbuart.tx_data[7:0]
+@28
+uart_tb.tbuart.ser_tx
+uart_tb.uut.mprj.uart.ctrl.i_tx_busy
+@24
+uart_tb.uut.mprj.uart.ctrl.o_tx[7:0]
+@28
+uart_tb.tbuart.ser_rx
+[pattern_trace] 1
+[pattern_trace] 0
