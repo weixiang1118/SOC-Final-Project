@@ -92,7 +92,6 @@ module uart_receive (
           busy <= 1'b1;
         end
         IRQ:begin     //6
-          
           irq <= 1'b0;
           done	<= 1'b1;
           state <= WAIT_READ;

@@ -61,12 +61,12 @@ reg [31:0] tx_buffer;
 reg [31:0] stat_reg;    
 reg tx_start_local;
 reg [31:0] fifo_rx_buffer;
-wire read;
-wire write;
+//wire read;
+//wire write;
 reg rd_buffer;
 reg [1:0] count;
-assign read = (i_wb_adr==TX_DATA && i_wb_valid && i_wb_we)? 1: 0;
-assign write = (i_wb_adr==RX_DATA && i_wb_valid && !i_wb_we)? 1: 0;
+//assign read = (i_wb_adr==TX_DATA && i_wb_valid /*&& i_wb_we*/)? 1: 0;
+//assign write = (i_wb_adr==RX_DATA && i_wb_valid /*&& !i_wb_we*/)? 1: 0;
 
 always@(posedge clk or negedge rst_n)begin
 	if(!rst_n) 
@@ -75,9 +75,6 @@ always@(posedge clk or negedge rst_n)begin
 	else if (rx_rd_en) 
 		count <= count +1;
 	else    count <= count;
-
-
-
 end
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
@@ -101,8 +98,8 @@ always@(posedge clk or negedge rst_n)begin
             stat_reg[1:0] <= 2'b01;
         else if(i_rx_busy && stat_reg[1:0]==2'b10)
             stat_reg[4] <= 1'b1;
-        else if((/*i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we*/ i_rx_busy && stat_reg[1:0]==2'b10) || i_frame_err)
-            stat_reg[1:0] <= 2'b01;
+        /*else if((/*i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we  i_rx_busy && stat_reg[1:0]==2'b10) || i_frame_err)
+            stat_reg[1:0] <= 2'b01;*/
     end
 end
 /*  
@@ -248,13 +245,13 @@ always@(posedge clk or negedge rst_n)begin
             rx_rd_en <= 1'b0;
     end
 end
-always@(posedge clk or negedge rst_n)begin
+/*always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         fifo_rx_buffer <= 0;
     end else begin	
     	fifo_rx_buffer <= rx_fifo_rdata;
     end
-end
+end*/
 
 
 always@(posedge clk or negedge rst_n)begin
@@ -264,7 +261,7 @@ always@(posedge clk or negedge rst_n)begin
         if(i_wb_valid && !i_wb_we)begin
             case(i_wb_adr)
                 RX_DATA:begin
-                    o_wb_dat <= fifo_rx_buffer;
+                    o_wb_dat <= rx_fifo_rdata;
                 end
                 STAT_REG:begin
                 	o_wb_dat <=stat_reg;
@@ -281,7 +278,7 @@ always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
         o_rx_finish <= 1'b0;
     end else begin			     
-        if((stat_reg[1:0]==2'b10 && rx_wr_en && !i_rx_busy)  || i_frame_err)
+        if(rx_wr_en  || i_frame_err)
             o_rx_finish <= 1'b1;
         else 
             o_rx_finish <= 1'b0;

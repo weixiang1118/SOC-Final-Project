@@ -24,16 +24,15 @@ wire [31:0] axi_dat_o, bram_dat_o;
 // decode 
 reg [1:0] decode; // 2'b00 = invalid, 2'b01 = AXI, 2'b10 = exmem
 always@(*)begin
-    if(wbs_cyc_i && wbs_stb_i)begin
-        if(wbs_adr_i[31:24] == 8'h30)
-            decode = 2'b01;
-        else if(wbs_adr_i[31:24] == 8'h38)
-            decode = 2'b10;
-        else
-            decode = 2'b00;
-    end else begin
-        decode = 2'b00;
+    if(wbs_adr_i[31:8] == 32'h3000_00) begin
+    	decode[0] = wbs_stb_i && wbs_cyc_i;
+    	decode[1] = 0;
     end
+    else if(wbs_adr_i[31:8] == 32'h3800_00) begin
+    	decode[0] = 0;
+    	decode[1] = wbs_stb_i && wbs_cyc_i;
+    end
+    else decode = 2'b00;
 end
 
 assign wbs_ack_o = (decode == 2'b01) ? axi_ack_o : (decode == 2'b10) ? bram_ack_o : 0;

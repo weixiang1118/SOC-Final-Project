@@ -11,6 +11,7 @@
 -v ../../rtl/user/user_project_wrapper.v 
 -v ../../rtl/user/wb_bram.v 
 -v ../../rtl/user/bram.v
+-v ../../rtl/user/synfifo.v
 
 ## VIP
 -v ../../vip/tbuart.v

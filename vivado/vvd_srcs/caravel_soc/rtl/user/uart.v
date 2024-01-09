@@ -1,12 +1,12 @@
 module uart #(
-  parameter BAUD_RATE = 9600 
+  parameter BAUD_RATE = 9600  //9600
 )(
   // Wishbone Slave ports (WB MI A)
   input wire    wb_clk_i,
   input wire    wb_rst_i,
   input wire    wb_valid,
-  //input wire    wbs_stb_i,
-  //input wire    wbs_cyc_i,
+  input wire    wbs_stb_i,
+  input wire    wbs_cyc_i,
   input wire    wbs_we_i,
   input wire    [3:0] wbs_sel_i,
   input wire    [31:0] wbs_dat_i,
@@ -58,6 +58,21 @@ module uart #(
 
   wire [31:0] clk_div;
   assign clk_div = 40000000 / BAUD_RATE;
+  
+  wire [31:0] 		tx_fifo_wdata;
+  wire 			tx_wr_en;
+  wire 	   		tx_rd_en;
+  wire [31:0] 		tx_fifo_rdata;
+  wire 	   		tx_full;
+  wire    	   	tx_empty;
+  
+  wire [31:0] 		rx_fifo_wdata;
+  wire 			rx_wr_en;
+  wire 	   		rx_rd_en;
+  wire [31:0] 		rx_fifo_rdata;
+  wire 	   		rx_full;
+  wire    	   	rx_empty;
+  wire 		done;
 
   uart_receive receive(
     .rst_n      (~wb_rst_i  ),
@@ -68,7 +83,9 @@ module uart #(
     .rx_finish  (rx_finish  ),	// data receive finish
     .irq        (irq        ),
     .frame_err  (frame_err  ),
-    .busy       (rx_busy    )
+    .busy       (rx_busy    ),
+    .rx_full	 (rx_full    ),
+    .done	 (done)
   );
 
   uart_transmission transmission(
@@ -77,30 +94,68 @@ module uart #(
     .clk_div    (clk_div    ),
     .tx         (tx         ),
     .tx_data    (tx_data    ),
-    .clear_req  (tx_start_clear), // clear transmission request
+    .clear_req  (tx_start_clear),      // clear transmission request
     .tx_start   (tx_start   ),
     .busy       (tx_busy    )
   );
   
   ctrl ctrl(
-	.rst_n		(~wb_rst_i),
-	.clk		  (wb_clk_i	),
-  .i_wb_valid(wb_valid),
-	.i_wb_adr	(wbs_adr_i),
-	.i_wb_we	(wbs_we_i	),
-	.i_wb_dat	(wbs_dat_i),
-	.i_wb_sel	(wbs_sel_i),
-	.o_wb_ack	(wbs_ack_o),
-	.o_wb_dat (wbs_dat_o),
-	.i_rx		  (rx_data	),
-  .i_irq    (irq      ),
-  .i_frame_err  (frame_err),
-  .i_rx_busy    (rx_busy  ),
-	.o_rx_finish  (rx_finish),
-	.o_tx		      (tx_data	),
-	.i_tx_start_clear(tx_start_clear), 
-  .i_tx_busy    (tx_busy  ),
-	.o_tx_start	  (tx_start )
+	.rst_n			(~wb_rst_i),
+	.clk		  	(wb_clk_i	),
+  	.i_wb_valid		(wb_valid),
+	.i_wb_adr			(wbs_adr_i),
+	.i_wb_we			(wbs_we_i	),
+	.i_wb_dat			(wbs_dat_i),
+	.i_wb_sel			(wbs_sel_i),
+	.o_wb_ack			(wbs_ack_o),
+	.o_wb_dat 		(wbs_dat_o),
+	
+	.i_rx		  	(rx_data  ),
+  	.i_irq    		(irq      ),
+  	.i_frame_err  		(frame_err),
+  	.i_rx_busy    		(rx_busy  ),
+	.o_rx_finish  		(rx_finish),
+	.done			(done),
+	
+	.o_tx		      	(tx_data	),
+	.i_tx_start_clear		(tx_start_clear), 
+  	.i_tx_busy    		(tx_busy  ),
+	.o_tx_start	  	(tx_start ),
+	
+	.tx_fifo_wdata		(tx_fifo_wdata),
+	.tx_wr_en			(tx_wr_en),
+	.tx_rd_en			(tx_rd_en),
+	.tx_fifo_rdata		(tx_fifo_rdata),
+	.tx_full			(tx_full),
+	.tx_empty			(tx_empty),
+	
+	.rx_fifo_wdata		(rx_fifo_wdata),
+	.rx_wr_en			(rx_wr_en),
+	.rx_rd_en			(rx_rd_en),
+	.rx_fifo_rdata		(rx_fifo_rdata),
+	.rx_full			(rx_full),
+	.rx_empty			(rx_empty)
+  );
+  
+  synfifo tx_fifo(
+  	.clk			(wb_clk_i),
+  	.rst			(~wb_rst_i),
+  	.wr_en			(tx_wr_en),
+  	.rd_en			(tx_rd_en),
+  	.wr_data			(tx_fifo_wdata),
+  	.rd_data			(tx_fifo_rdata),
+  	.fifo_full		(tx_full),
+  	.fifo_empty		(tx_empty)
+  );
+  synfifo rx_fifo(
+  	.clk			(wb_clk_i),
+  	.rst			(~wb_rst_i),
+  	.wr_en			(rx_wr_en),
+  	.rd_en			(rx_rd_en),
+  	.wr_data			(rx_fifo_wdata),
+  	.rd_data			(rx_fifo_rdata),
+  	.fifo_full		(rx_full),
+  	.fifo_empty		(rx_empty)
   );
 
 endmodule

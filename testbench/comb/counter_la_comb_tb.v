@@ -162,10 +162,97 @@ module counter_la_comb_tb;
 
 	initial begin
 		// uart
-		fork 
+		//fork 
 		send_data_2;
+		//workload;
+		//wait(checkbits == 16'hAB51);
+		//$display("LA Test passed");
+		//join
+		//#100000;
+		//$finish;
+		//wait(checkbits == 16'hAB51);
 		
-		begin
+		//wait(checkbits == 61);
+		//send_data_1;
+		//wait(checkbits == 15);
+		//#10000;
+		//$display("LA Test 1 passed");				//AB40-AB51
+				
+	end
+
+	task send_data_1;begin
+		@(posedge clock);
+		tx_start = 1;
+		tx_data = 15;
+		
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx complete 1");
+		
+	end endtask
+
+	task send_data_2;begin
+		wait(checkbits == 16'hAB40);
+		@(posedge clock);
+		start_time = $time;
+		tx_start = 1;
+		tx_data = 61;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data1 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 15;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data2 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 18;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data3 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 55;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data4 complete ");
+		end_time = $time;
+		
+		/*wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 8;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data5 complete ");*/
+		/*wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 0;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 21;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;*/
+		$display("tx complete");
+		$display("tx complete 2,Execution time: %0t ns",end_time - start_time);
+		
+	end endtask
+	task workload; begin
 		wait(checkbits == 16'hAB40);
 		start_time = $time;
 		// fir
@@ -217,48 +304,6 @@ module counter_la_comb_tb;
 		wait(checkbits == 16'hAB53);
 		end_time = $time;
 		$display("qsort done,Execution time: %0t ns",end_time - start_time);
-
-		//$display("UART started");
-		
-		end
-		
-		join
-		wait(checkbits == 16'hAB51);
-		$display("LA Test passed");
-		//#100000;
-		//$finish;
-		//wait(checkbits == 16'hAB51);
-		
-		//wait(checkbits == 61);
-		//send_data_1;
-		//wait(checkbits == 15);
-		//#10000;
-		//$display("LA Test 1 passed");				//AB40-AB51
-				
-	end
-
-	task send_data_1;begin
-		@(posedge clock);
-		tx_start = 1;
-		tx_data = 15;
-		
-		#50;
-		wait(!tx_busy);
-		tx_start = 0;
-		$display("tx complete 1");
-		
-	end endtask
-
-	task send_data_2;begin
-		@(posedge clock);
-		tx_start = 1;
-		tx_data = 61;
-		
-		#50;
-		wait(!tx_busy);
-		tx_start = 0;
-		$display("tx complete 2,Execution time: %0t ns",$time);
-		
 	end endtask
 
 

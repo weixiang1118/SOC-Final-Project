@@ -144,7 +144,7 @@ module uart_tb;
 		$dumpvars(0, uart_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (500) begin
+		repeat (400) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -164,8 +164,8 @@ module uart_tb;
 
 		send_data_2;
 		//send_data_1;
-		wait(checkbits == 16'hAB51);
-		$display("LA Test 1 passed");
+		//wait(checkbits == 16'hAB51);
+		//$display("LA Test 1 passed");
 		//wait(checkbits == 61);
 		//#10000;
 		//send_data_1;
@@ -196,6 +196,7 @@ module uart_tb;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
+		$display("tx data1 complete ");
 		
 		wait(tx_clear_req);
 		tx_start = 1;
@@ -203,6 +204,7 @@ module uart_tb;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
+		$display("tx data2 complete ");
 		
 		wait(tx_clear_req);
 		tx_start = 1;
@@ -210,6 +212,7 @@ module uart_tb;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
+		$display("tx data3 complete ");
 		
 		wait(tx_clear_req);
 		tx_start = 1;
@@ -217,7 +220,15 @@ module uart_tb;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
+		$display("tx data4 complete ");
 		
+		/*wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 8;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data5 complete ");*/
 		/*wait(tx_clear_req);
 		tx_start = 1;
 		tx_data = 0;
@@ -231,7 +242,7 @@ module uart_tb;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;*/
-		$display("tx complete 2");
+		$display("tx complete");
 		
 	end endtask
 

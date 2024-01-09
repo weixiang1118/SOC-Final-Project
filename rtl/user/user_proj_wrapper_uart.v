@@ -80,6 +80,7 @@ module user_project_wrapper #(
 wire wb_valid;
 assign wb_valid = (wbs_adr_i[31:8] == 32'h3000_00) ? wbs_stb_i : 1'b0;
 
+
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
@@ -110,6 +111,7 @@ uart uart (
     // irq
     .user_irq (user_irq)
 );
+
 
 endmodule	// user_project_wrapper
 

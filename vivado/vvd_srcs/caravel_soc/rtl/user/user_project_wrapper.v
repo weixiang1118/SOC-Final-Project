@@ -77,33 +77,41 @@ module user_project_wrapper #(
     // User maskable interrupt signals
     output [2:0] user_irq
 );
+wire wb_valid;
+assign wb_valid = (wbs_adr_i[31:8] == 32'h3000_00) ? wbs_stb_i : 1'b0;
+
 
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
-
-uart_bram uartbram(
-    .wb_clk_i   (wb_clk_i),
-    .wb_rst_i   (wb_rst_i),
+uart uart (
+`ifdef USE_POWER_PINS
+	.vccd1(vccd1),	// User area 1 1.8V power
+	.vssd1(vssd1),	// User area 1 digital ground
+`endif
+    .wb_clk_i(wb_clk_i),
+    .wb_rst_i(wb_rst_i),
 
     // MGMT SoC Wishbone Slave
-    .wbs_cyc_i  (wbs_cyc_i),
-    .wbs_stb_i  (wbs_stb_i),
-    .wbs_we_i   (wbs_we_i ),
-    .wbs_sel_i  (wbs_sel_i),
-    .wbs_adr_i  (wbs_adr_i),
-    .wbs_dat_i  (wbs_dat_i),
-    .wbs_ack_o  (wbs_ack_o),
-    .wbs_dat_o  (wbs_dat_o),
+    .wb_valid(wb_valid),
+    .wbs_stb_i(wbs_stb_i),
+    .wbs_cyc_i(wbs_cyc_i),
+    .wbs_we_i(wbs_we_i),
+    .wbs_sel_i(wbs_sel_i),
+    .wbs_dat_i(wbs_dat_i),
+    .wbs_adr_i(wbs_adr_i),
+    .wbs_ack_o(wbs_ack_o),
+    .wbs_dat_o(wbs_dat_o),
 
     // IO ports
-    .io_in      (io_in    ),
-    .io_out     (io_out   ),
-    .io_oeb     (io_oeb   ),
+    .io_in  (io_in      ),
+    .io_out (io_out     ),
+    .io_oeb (io_oeb     ),
 
     // irq
-    .irq        (user_irq )
+    .user_irq (user_irq)
 );
+
 
 endmodule	// user_project_wrapper
 
