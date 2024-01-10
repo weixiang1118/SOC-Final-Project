@@ -1,0 +1,297 @@
+Reading uart.hex
+uart.hex loaded into memory
+Memory 5 bytes = 0x6f 0x00 0x00 0x0b 0x13
+VCD info: dumpfile uart.vcd opened for output.
+LA Test 1 started
+tx data bit index 0: 1
+tx data bit index 1: 0
+tx data bit index 2: 0
+tx data bit index 3: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data1 complete 
+tx data bit index 0: 0
+tx data bit index 1: 1
+tx data bit index 2: 0
+tx data bit index 3: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data2 complete 
+tx data bit index 0: 1
+tx data bit index 1: 1
+tx data bit index 2: 0
+tx data bit index 3: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data3 complete 
+tx data bit index 0: 0
+tx data bit index 1: 0
+tx data bit index 2: 1
+tx data bit index 3: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data4 complete 
+tx data bit index 0: 1
+tx data bit index 1: 0
+tx data bit index 2: 1
+tx data bit index 3: 0
+rx data bit index 0: 1
+rx data bit index 1: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 2: 0
+rx data bit index 3: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data5 complete 
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word   1
+tx data bit index 0: 0
+tx data bit index 1: 1
+rx data bit index 0: 0
+rx data bit index 1: 1
+tx data bit index 2: 1
+tx data bit index 3: 0
+rx data bit index 2: 0
+rx data bit index 3: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data6 complete 
+recevied word   2
+rx data bit index 0: 1
+rx data bit index 1: 1
+tx data bit index 0: 1
+tx data bit index 1: 1
+rx data bit index 2: 0
+rx data bit index 3: 0
+tx data bit index 2: 1
+tx data bit index 3: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+recevied word   3
+tx data7 complete 
+rx data bit index 0: 0
+rx data bit index 1: 0
+rx data bit index 2: 1
+rx data bit index 3: 0
+tx data bit index 0: 0
+tx data bit index 1: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 2: 0
+tx data bit index 3: 1
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+recevied word   4
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data8 complete 
+tx data bit index 0: 1
+tx data bit index 1: 0
+tx data bit index 2: 0
+tx data bit index 3: 1
+rx data bit index 0: 1
+rx data bit index 1: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 2: 1
+rx data bit index 3: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data9 complete 
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word   5
+tx data bit index 0: 0
+tx data bit index 1: 1
+rx data bit index 0: 0
+rx data bit index 1: 1
+tx data bit index 2: 0
+tx data bit index 3: 1
+rx data bit index 2: 1
+rx data bit index 3: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data10 complete 
+recevied word   6
+rx data bit index 0: 1
+rx data bit index 1: 1
+tx data bit index 0: 1
+tx data bit index 1: 1
+rx data bit index 2: 1
+rx data bit index 3: 0
+tx data bit index 2: 0
+tx data bit index 3: 1
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+recevied word   7
+tx data11 complete 
+rx data bit index 0: 0
+rx data bit index 1: 0
+rx data bit index 2: 0
+rx data bit index 3: 1
+tx data bit index 0: 0
+tx data bit index 1: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 2: 1
+tx data bit index 3: 1
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+recevied word   8
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data12 complete 
+tx data bit index 0: 1
+tx data bit index 1: 0
+tx data bit index 2: 1
+tx data bit index 3: 1
+rx data bit index 0: 1
+rx data bit index 1: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 2: 0
+rx data bit index 3: 1
+tx data bit index 6: 0
+tx data bit index 7: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data13 complete 
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word   9
+tx data bit index 0: 0
+tx data bit index 1: 1
+rx data bit index 0: 0
+rx data bit index 1: 1
+tx data bit index 2: 1
+tx data bit index 3: 1
+rx data bit index 2: 0
+rx data bit index 3: 1
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data14 complete 
+recevied word  10
+rx data bit index 0: 1
+rx data bit index 1: 1
+tx data bit index 0: 1
+tx data bit index 1: 1
+rx data bit index 2: 0
+rx data bit index 3: 1
+tx data bit index 2: 1
+tx data bit index 3: 1
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 4: 0
+tx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data bit index 6: 0
+tx data bit index 7: 0
+recevied word  11
+tx data15 complete 
+rx data bit index 0: 0
+rx data bit index 1: 0
+rx data bit index 2: 1
+rx data bit index 3: 1
+tx data bit index 0: 0
+tx data bit index 1: 0
+rx data bit index 4: 0
+rx data bit index 5: 0
+tx data bit index 2: 0
+tx data bit index 3: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+tx data bit index 4: 1
+tx data bit index 5: 0
+recevied word  12
+tx data bit index 6: 0
+tx data bit index 7: 0
+tx data16 complete 
+tx complete
+rx data bit index 0: 1
+rx data bit index 1: 0
+rx data bit index 2: 1
+rx data bit index 3: 1
+rx data bit index 4: 0
+rx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word  13
+rx data bit index 0: 0
+rx data bit index 1: 1
+rx data bit index 2: 1
+rx data bit index 3: 1
+rx data bit index 4: 0
+rx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word  14
+rx data bit index 0: 1
+rx data bit index 1: 1
+rx data bit index 2: 1
+rx data bit index 3: 1
+rx data bit index 4: 0
+rx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word  15
+rx data bit index 0: 0
+rx data bit index 1: 0
+rx data bit index 2: 0
+rx data bit index 3: 0
+rx data bit index 4: 1
+rx data bit index 5: 0
+rx data bit index 6: 0
+rx data bit index 7: 0
+recevied word  16
+[1;31m
+Monitor: Timeout, Test LA (RTL) Failed
+[0m

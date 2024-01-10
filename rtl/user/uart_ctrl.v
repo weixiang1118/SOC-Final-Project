@@ -1,4 +1,5 @@
 module ctrl(
+    //wb
     input wire        rst_n,
     input wire        clk,
     input wire        i_wb_valid,
@@ -7,15 +8,16 @@ module ctrl(
     input wire [31:0] i_wb_dat,
     input wire [3:0]  i_wb_sel,
     output reg        o_wb_ack,
-    output reg [31:0] o_wb_dat, 
-     
+    output reg [31:0] o_wb_dat,
+    //output reg 	  i_irq; 
+    //rx 
     input wire [7:0]  i_rx,
     input wire        i_irq,
     input wire        i_rx_busy,
     input wire        i_frame_err,
     output reg        o_rx_finish,
     input wire        done,
-    
+    //tx
     output reg [7:0]  o_tx,
     input wire        i_tx_start_clear,
     input wire        i_tx_busy,
@@ -64,7 +66,7 @@ reg [31:0] fifo_rx_buffer;
 //wire read;
 //wire write;
 reg rd_buffer;
-reg [1:0] count;
+reg [2:0] count;
 //assign read = (i_wb_adr==TX_DATA && i_wb_valid /*&& i_wb_we*/)? 1: 0;
 //assign write = (i_wb_adr==RX_DATA && i_wb_valid /*&& !i_wb_we*/)? 1: 0;
 
@@ -78,13 +80,13 @@ always@(posedge clk or negedge rst_n)begin
 end
 always@(posedge clk or negedge rst_n)begin
     if(!rst_n)begin
-        stat_reg <= 32'h0000_0005; //0101  tx rx empty
+        stat_reg <= 32'h0000_0005; //0101  tx fifo and rx fifo  are empty
     end else begin
         if(i_wb_valid && !i_wb_we)begin  	//
             if(i_wb_adr==STAT_REG)
                 stat_reg[5:4] <= 2'b00;
         end
-
+        
         if(i_tx_busy)
             stat_reg[3:2] <= 2'b10;
         else
@@ -92,6 +94,8 @@ always@(posedge clk or negedge rst_n)begin
 
         if(i_frame_err && i_rx_busy)
             stat_reg[5] <= 1'b1;
+        /*else if(done && !stat_reg[1] && !i_frame_err) // rx_fifo not full
+            stat_reg[1:0] <= 2'b10;*/
         else if(done && !stat_reg[1] && !i_frame_err) // 01
             stat_reg[1:0] <= 2'b10;
         else if((/*i_wb_valid && i_wb_adr==RX_DATA && !i_wb_we*/ i_rx_busy && stat_reg[1:0]==2'b10) || i_frame_err)
@@ -239,7 +243,7 @@ always@(posedge clk or negedge rst_n)begin
         rx_rd_en <= 1'b0;
     end else begin
     	if(rx_rd_en) rx_rd_en <= 1'b0;			     
-        else if(i_wb_valid && !rx_empty && count !=2)
+        else if(i_wb_valid && !rx_empty && count !=4)
             rx_rd_en<= 1'b1;
         else 
             rx_rd_en <= 1'b0;

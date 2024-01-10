@@ -1,5 +1,5 @@
 module synfifo#(
-	parameter depth = 2
+	parameter depth = 4
 )(
 	input clk,
 	input rst,
@@ -12,9 +12,9 @@ module synfifo#(
 );
 
 	reg [31:0] mem [depth-1:0];
-	reg /*[1:0] */wr_ptr;
-	reg /*[1:0] */rd_ptr;
-	reg [1:0] cnt;
+	reg [1:0] wr_ptr;
+	reg [1:0] rd_ptr;
+	reg [2:0] cnt;
 	
 	integer i;
 	// write pointer 

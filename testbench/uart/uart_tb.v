@@ -144,7 +144,7 @@ module uart_tb;
 		$dumpvars(0, uart_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (400) begin
+		repeat (1100) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -192,7 +192,7 @@ module uart_tb;
 	task send_data_2;begin
 		@(posedge clock);
 		tx_start = 1;
-		tx_data = 61;
+		tx_data = 1;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
@@ -200,7 +200,7 @@ module uart_tb;
 		
 		wait(tx_clear_req);
 		tx_start = 1;
-		tx_data = 15;
+		tx_data = 2;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
@@ -208,7 +208,7 @@ module uart_tb;
 		
 		wait(tx_clear_req);
 		tx_start = 1;
-		tx_data = 18;
+		tx_data = 3;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
@@ -216,32 +216,108 @@ module uart_tb;
 		
 		wait(tx_clear_req);
 		tx_start = 1;
-		tx_data = 55;
+		tx_data = 4;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
 		$display("tx data4 complete ");
 		
-		/*wait(tx_clear_req);
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 5;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data5 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 6;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data6 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 7;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data7 complete ");
+		
+		wait(tx_clear_req);
 		tx_start = 1;
 		tx_data = 8;
 		#50;
 		wait(!tx_busy);
 		tx_start = 0;
-		$display("tx data5 complete ");*/
-		/*wait(tx_clear_req);
-		tx_start = 1;
-		tx_data = 0;
-		#50;
-		wait(!tx_busy);
-		tx_start = 0;
+		$display("tx data8 complete ");
 		
 		wait(tx_clear_req);
 		tx_start = 1;
-		tx_data = 21;
+		tx_data = 9;
 		#50;
 		wait(!tx_busy);
-		tx_start = 0;*/
+		tx_start = 0;
+		$display("tx data9 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 10;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data10 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 11;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data11 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 12;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data12 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 13;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data13 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 14;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data14 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 15;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data15 complete ");
+		
+		wait(tx_clear_req);
+		tx_start = 1;
+		tx_data = 16;
+		#50;
+		wait(!tx_busy);
+		tx_start = 0;
+		$display("tx data16 complete ");
+		
 		$display("tx complete");
 		
 	end endtask

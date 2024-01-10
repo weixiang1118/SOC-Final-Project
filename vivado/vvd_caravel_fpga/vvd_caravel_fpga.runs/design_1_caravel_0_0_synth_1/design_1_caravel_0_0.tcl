@@ -108,6 +108,7 @@ read_verilog -library xil_defaultlib {
   /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/vip/RAM128.v
   /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/vip/RAM256.v
   /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/VexRiscv_MinDebugCache.v
+  /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/bram.v
   /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/chip_io.v
   /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/gpio_control_block.v
   /home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/gpio_defaults_block.v

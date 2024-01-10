@@ -96,9 +96,8 @@ void main()
 
 	// Set UART clock to 64 kbaud (enable before I/O configuration)
 	// reg_uart_clkdiv = 625;
-	reg_uart_enable = 1;
-	reg_wb_enable = 1;
 	
+	reg_uart_enable = 1;
 	// Now, apply the configuration
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
@@ -110,14 +109,6 @@ void main()
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 	
-	#ifdef USER_PROJ_IRQ0_EN	
-	// unmask USER_IRQ_0_INTERRUPT
-	mask = irq_getmask();
-	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
-	irq_setmask(mask);
-	// enable user_irq_0_ev_enable
-	user_irq_0_ev_enable_write(1);	
-	#endif
 	
 	// Flag start of the test 
 	reg_mprj_datal = 0xAB400000;
@@ -130,7 +121,7 @@ void main()
 	
 	//reg_mprj_datal = 0xAB510000;    
 
-	/*int* tmp_fir = fir();
+	int* tmp_fir = fir();
 	reg_mprj_datal = *tmp_fir << 16;
 	reg_mprj_datal = *(tmp_fir+1) << 16;
 	reg_mprj_datal = *(tmp_fir+2) << 16;
@@ -173,7 +164,18 @@ void main()
 	
 	
 	reg_mprj_datal = 0xAB530000;
-	reg_mprj_datal = *tmp_qs << 16;*/
+	reg_mprj_datal = *tmp_qs << 16;
+	
+	reg_wb_enable = 1;
+	
+	#ifdef USER_PROJ_IRQ0_EN	
+	// unmask USER_IRQ_0_INTERRUPT
+	mask = irq_getmask();
+	mask |= 1 << USER_IRQ_0_INTERRUPT; // USER_IRQ_0_INTERRUPT = 2
+	irq_setmask(mask);
+	// enable user_irq_0_ev_enable
+	user_irq_0_ev_enable_write(1);	
+	#endif
 	
 	reg_mprj_datal = 0xAB510000;
 

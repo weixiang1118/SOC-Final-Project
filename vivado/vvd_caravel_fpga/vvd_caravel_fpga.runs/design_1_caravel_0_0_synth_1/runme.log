@@ -21,11 +21,11 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 2861
-WARNING: [Synth 8-1102] /* in comment [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/uart_ctrl.v:101]
-WARNING: [Synth 8-1102] /* in comment [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/uart_ctrl.v:143]
+INFO: [Synth 8-7075] Helper process launched with PID 3633
+WARNING: [Synth 8-1102] /* in comment [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/uart_ctrl.v:105]
+WARNING: [Synth 8-1102] /* in comment [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/uart_ctrl.v:147]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2901.109 ; gain = 0.000 ; free physical = 2246 ; free virtual = 5321
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2901.723 ; gain = 0.000 ; free physical = 151 ; free virtual = 3453
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_1_caravel_0_0' [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_caravel_fpga/vvd_caravel_fpga.gen/sources_1/bd/design_1/ip/design_1_caravel_0_0/synth/design_1_caravel_0_0.v:53]
 INFO: [Synth 8-6157] synthesizing module 'caravel' [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/caravel.v:77]
@@ -90,6 +90,8 @@ INFO: [Synth 8-6155] done synthesizing module 'ctrl' (0#1) [/home/ubuntu/Desktop
 INFO: [Synth 8-6157] synthesizing module 'synfifo' [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/synfifo.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'synfifo' (0#1) [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/synfifo.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'uart' (0#1) [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/uart.v:1]
+INFO: [Synth 8-6157] synthesizing module 'bram' [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/bram.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'bram' (0#1) [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/bram.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'user_project_wrapper' (0#1) [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/user/user_project_wrapper.v:32]
 INFO: [Synth 8-6157] synthesizing module 'housekeeping' [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/housekeeping.v:99]
 INFO: [Synth 8-6157] synthesizing module 'boledu_fd_sc_hd__clkbuf_8' [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/housekeeping.v:1503]
@@ -237,6 +239,27 @@ WARNING: [Synth 8-3848] Net mprj2_vcc_pwrgood in module/entity caravel does not 
 WARNING: [Synth 8-3848] Net mprj_vdd_pwrgood in module/entity caravel does not have driver. [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/caravel.v:462]
 WARNING: [Synth 8-3848] Net mprj2_vdd_pwrgood in module/entity caravel does not have driver. [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/caravel.v:463]
 WARNING: [Synth 8-3848] Net porb_h_in_nc in module/entity caravel does not have driver. [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/caravel.v:481]
+WARNING: [Synth 8-7129] Port A0[31] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[30] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[29] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[28] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[27] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[26] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[25] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[24] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[23] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[22] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[21] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[20] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[19] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[18] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[17] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[16] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[15] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[14] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[13] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[12] in module bram is either unconnected or has no load
+WARNING: [Synth 8-7129] Port A0[11] in module bram is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_wb_dat[31] in module ctrl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_wb_dat[30] in module ctrl is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_wb_dat[29] in module ctrl is either unconnected or has no load
@@ -316,68 +339,47 @@ WARNING: [Synth 8-7129] Port io_oeb[35] in module uart is either unconnected or 
 WARNING: [Synth 8-7129] Port io_oeb[34] in module uart is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_oeb[33] in module uart is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_oeb[32] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[31] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[30] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[29] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[28] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[27] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[26] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[25] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[24] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[23] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[22] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[21] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[20] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[19] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[18] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[17] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[16] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[15] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[14] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[13] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[12] in module uart is either unconnected or has no load
-WARNING: [Synth 8-7129] Port io_oeb[11] in module uart is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 2901.109 ; gain = 0.000 ; free physical = 3286 ; free virtual = 6369
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2901.723 ; gain = 0.000 ; free physical = 2296 ; free virtual = 5542
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2901.109 ; gain = 0.000 ; free physical = 3286 ; free virtual = 6369
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2901.723 ; gain = 0.000 ; free physical = 2262 ; free virtual = 5508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2901.109 ; gain = 0.000 ; free physical = 3286 ; free virtual = 6369
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2901.723 ; gain = 0.000 ; free physical = 2262 ; free virtual = 5508
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2901.109 ; gain = 0.000 ; free physical = 3279 ; free virtual = 6362
+Netlist sorting complete. Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00 . Memory (MB): peak = 2901.723 ; gain = 0.000 ; free physical = 2238 ; free virtual = 5484
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2933.125 ; gain = 0.000 ; free physical = 3162 ; free virtual = 6245
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2933.738 ; gain = 0.000 ; free physical = 2186 ; free virtual = 5433
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.1 . Memory (MB): peak = 2933.125 ; gain = 0.000 ; free physical = 3155 ; free virtual = 6238
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.13 . Memory (MB): peak = 2933.738 ; gain = 0.000 ; free physical = 2175 ; free virtual = 5421
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3173 ; free virtual = 6256
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2267 ; free virtual = 5519
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3173 ; free virtual = 6256
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2267 ; free virtual = 5519
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3173 ; free virtual = 6256
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2267 ; free virtual = 5518
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-3936] Found unconnected internal register 'execute_to_memory_INSTRUCTION_reg' and it is trimmed from '32' to '30' bits. [/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_srcs/caravel_soc/rtl/soc/VexRiscv_MinDebugCache.v:1990]
 INFO: [Synth 8-802] inferred FSM for state register 'switch_Fetcher_l362_reg' in module 'VexRiscv'
@@ -489,7 +491,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'xfer_state_reg' using enco
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'wbbd_state_reg' using encoding 'one-hot' in module 'housekeeping'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3425 ; free virtual = 6506
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2147 ; free virtual = 5401
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'inst/gpio_defaults_block_0' (gpio_defaults_block) to 'inst/gpio_defaults_block_1'
 INFO: [Synth 8-223] decloning instance 'inst/gpio_defaults_block_2' (gpio_defaults_block__parameterized0) to 'inst/gpio_defaults_block_4'
@@ -542,16 +544,16 @@ Detailed RTL Component Info :
 	   3 Input    8 Bit       Adders := 2     
 	   2 Input    6 Bit       Adders := 2     
 	   2 Input    5 Bit       Adders := 4     
-	   2 Input    4 Bit       Adders := 12    
-	   2 Input    3 Bit       Adders := 8     
-	   2 Input    2 Bit       Adders := 5     
-	   2 Input    1 Bit       Adders := 7     
+	   2 Input    4 Bit       Adders := 13    
+	   2 Input    3 Bit       Adders := 11    
+	   2 Input    2 Bit       Adders := 6     
+	   2 Input    1 Bit       Adders := 3     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 	   2 Input      1 Bit         XORs := 12    
 +---Registers : 
 	               38 Bit    Registers := 1     
-	               32 Bit    Registers := 80    
+	               32 Bit    Registers := 85    
 	               30 Bit    Registers := 4     
 	               28 Bit    Registers := 1     
 	               26 Bit    Registers := 1     
@@ -564,11 +566,12 @@ Detailed RTL Component Info :
 	                7 Bit    Registers := 2     
 	                6 Bit    Registers := 2     
 	                5 Bit    Registers := 6     
-	                4 Bit    Registers := 16    
-	                3 Bit    Registers := 50    
-	                2 Bit    Registers := 24    
-	                1 Bit    Registers := 946   
+	                4 Bit    Registers := 17    
+	                3 Bit    Registers := 53    
+	                2 Bit    Registers := 25    
+	                1 Bit    Registers := 943   
 +---RAMs : 
+	              64K Bit	(2048 X 32 bit)          RAMs := 1     
 	               8K Bit	(256 X 32 bit)          RAMs := 1     
 	               4K Bit	(128 X 32 bit)          RAMs := 1     
 	             1024 Bit	(32 X 32 bit)          RAMs := 1     
@@ -579,8 +582,8 @@ Detailed RTL Component Info :
 	   6 Input   38 Bit        Muxes := 1     
 	   2 Input   38 Bit        Muxes := 2     
 	  97 Input   38 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 104   
-	   4 Input   32 Bit        Muxes := 20    
+	   2 Input   32 Bit        Muxes := 116   
+	   4 Input   32 Bit        Muxes := 24    
 	   3 Input   32 Bit        Muxes := 4     
 	   7 Input   32 Bit        Muxes := 3     
 	   5 Input   32 Bit        Muxes := 2     
@@ -598,7 +601,7 @@ Detailed RTL Component Info :
 	   2 Input   14 Bit        Muxes := 2     
 	  98 Input   13 Bit        Muxes := 38    
 	   4 Input   13 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 29    
+	   2 Input    8 Bit        Muxes := 30    
 	   7 Input    8 Bit        Muxes := 5     
 	   4 Input    8 Bit        Muxes := 3     
 	   5 Input    8 Bit        Muxes := 1     
@@ -615,21 +618,21 @@ Detailed RTL Component Info :
 	   4 Input    5 Bit        Muxes := 1     
 	   4 Input    4 Bit        Muxes := 2     
 	   5 Input    4 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 11    
+	   2 Input    4 Bit        Muxes := 15    
 	   6 Input    4 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 87    
+	   2 Input    3 Bit        Muxes := 88    
 	   5 Input    3 Bit        Muxes := 4     
 	   7 Input    3 Bit        Muxes := 3     
 	   3 Input    3 Bit        Muxes := 2     
 	   4 Input    3 Bit        Muxes := 1     
 	  97 Input    3 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 17    
+	   2 Input    2 Bit        Muxes := 16    
 	   7 Input    2 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 3     
 	   9 Input    2 Bit        Muxes := 1     
 	   3 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 1252  
-	   4 Input    1 Bit        Muxes := 31    
+	   2 Input    1 Bit        Muxes := 1253  
+	   4 Input    1 Bit        Muxes := 39    
 	   3 Input    1 Bit        Muxes := 11    
 	   5 Input    1 Bit        Muxes := 12    
 	   7 Input    1 Bit        Muxes := 21    
@@ -758,7 +761,7 @@ WARNING: [Synth 8-3332] Sequential element (gpio_outenb_reg_LDC) is unused and w
 WARNING: [Synth 8-3332] Sequential element (gpio_outenb_reg_C) is unused and will be removed from module gpio_control_block__17.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3182 ; free virtual = 6279
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:36 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 1190 ; free virtual = 4456
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -783,6 +786,7 @@ Block RAM: Preliminary Mapping Report (see note below)
 |inst/\soc/core /RAM128   | RAM_reg                                | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
 |inst/\soc/core /VexRiscv | IBusCachedPlugin_cache/banks_0_reg     | 16 x 32(READ_FIRST)    | W |   | 16 x 32(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
 |inst/\soc/core /VexRiscv | IBusCachedPlugin_cache/ways_0_tags_reg | 2 x 28(READ_FIRST)     | W |   | 2 x 28(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|inst/mprj                | bram/RAM_reg                           | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
 +-------------------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
@@ -803,13 +807,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:35 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3106 ; free virtual = 6208
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2079 ; free virtual = 5347
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:36 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3101 ; free virtual = 6203
+Finished Timing Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2104 ; free virtual = 5372
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -823,6 +827,7 @@ Block RAM: Final Mapping Report
 |inst/\soc/core /RAM128   | RAM_reg                                | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
 |inst/\soc/core /VexRiscv | IBusCachedPlugin_cache/banks_0_reg     | 16 x 32(READ_FIRST)    | W |   | 16 x 32(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
 |inst/\soc/core /VexRiscv | IBusCachedPlugin_cache/ways_0_tags_reg | 2 x 28(READ_FIRST)     | W |   | 2 x 28(WRITE_FIRST)    |   | R | Port A and B     | 1      | 0      | 
+|inst/mprj                | bram/RAM_reg                           | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
 +-------------------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
@@ -844,8 +849,10 @@ INFO: [Synth 8-7052] The timing for the instance inst/soc/core/RAM256/RAM_reg (i
 INFO: [Synth 8-7052] The timing for the instance inst/soc/core/RAM128/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance inst/soc/core/VexRiscv/IBusCachedPlugin_cache/banks_0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance inst/soc/core/VexRiscv/IBusCachedPlugin_cache/ways_0_tags_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/mprj/bram/RAM_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance inst/mprj/bram/RAM_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3042 ; free virtual = 6145
+Finished Technology Mapping : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2110 ; free virtual = 5382
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -864,37 +871,37 @@ Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 CRITICAL WARNING: [Synth 8-5799] Converted tricell instance 'padframei_0' to logic
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 2974 ; free virtual = 6076
+Finished IO Insertion : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2062 ; free virtual = 5335
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 2974 ; free virtual = 6076
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2062 ; free virtual = 5334
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 2996 ; free virtual = 6098
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2054 ; free virtual = 5327
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3015 ; free virtual = 6117
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2053 ; free virtual = 5326
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3109 ; free virtual = 6211
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2050 ; free virtual = 5323
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3107 ; free virtual = 6209
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2050 ; free virtual = 5323
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -930,48 +937,49 @@ Report Cell Usage:
 +------+---------+------+
 |1     |CARRY4   |   152|
 |2     |LUT1     |   212|
-|3     |LUT2     |   340|
-|4     |LUT3     |   316|
-|5     |LUT4     |   712|
-|6     |LUT5     |   743|
-|7     |LUT6     |  1878|
+|3     |LUT2     |   379|
+|4     |LUT3     |   284|
+|5     |LUT4     |   729|
+|6     |LUT5     |   830|
+|7     |LUT6     |  1926|
 |8     |MUXF7    |   170|
 |9     |MUXF8    |    47|
 |10    |RAM32M   |     4|
 |11    |RAMB18E1 |     6|
-|13    |SRL16E   |    38|
-|14    |FDCE     |  1187|
-|15    |FDPE     |   274|
-|16    |FDRE     |  2497|
-|17    |FDSE     |    87|
-|18    |LDC      |    75|
+|13    |RAMB36E1 |     2|
+|14    |SRL16E   |    38|
+|15    |FDCE     |  1279|
+|16    |FDPE     |   274|
+|17    |FDRE     |  2497|
+|18    |FDSE     |    87|
+|19    |LDC      |    75|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.125 ; gain = 32.016 ; free physical = 3107 ; free virtual = 6209
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.738 ; gain = 32.016 ; free physical = 2049 ; free virtual = 5322
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 1 critical warnings and 1396 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 2933.125 ; gain = 0.000 ; free physical = 3130 ; free virtual = 6232
-Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 2933.133 ; gain = 32.016 ; free physical = 3130 ; free virtual = 6232
+Synthesis finished with 0 errors, 1 critical warnings and 1395 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 2933.738 ; gain = 0.000 ; free physical = 2092 ; free virtual = 5365
+Synthesis Optimization Complete : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2933.746 ; gain = 32.016 ; free physical = 2092 ; free virtual = 5365
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00 . Memory (MB): peak = 2933.133 ; gain = 0.000 ; free physical = 3399 ; free virtual = 6501
-INFO: [Netlist 29-17] Analyzing 454 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2933.746 ; gain = 0.000 ; free physical = 2190 ; free virtual = 5463
+INFO: [Netlist 29-17] Analyzing 456 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2933.133 ; gain = 0.000 ; free physical = 3350 ; free virtual = 6453
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2933.746 ; gain = 0.000 ; free physical = 1944 ; free virtual = 5217
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 79 instances were transformed.
   LDC => LDCE: 75 instances
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
 
-Synth Design complete, checksum: 46cff3b8
+Synth Design complete, checksum: 5905f2f7
 INFO: [Common 17-83] Releasing license: Synthesis
-159 Infos, 341 Warnings, 1 Critical Warnings and 0 Errors encountered.
+163 Infos, 341 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 2933.133 ; gain = 32.023 ; free physical = 3566 ; free virtual = 6664
+synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:00:51 . Memory (MB): peak = 2933.746 ; gain = 32.023 ; free physical = 2150 ; free virtual = 5422
 INFO: [Common 17-1381] The checkpoint '/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_caravel_fpga/vvd_caravel_fpga.runs/design_1_caravel_0_0_synth_1/design_1_caravel_0_0.dcp' has been generated.
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-INFO: [Coretcl 2-1174] Renamed 54 cell refs.
+INFO: [Coretcl 2-1174] Renamed 55 cell refs.
 INFO: [Common 17-1381] The checkpoint '/home/ubuntu/Desktop/lab-wlos_baseline/vivado/vvd_caravel_fpga/vvd_caravel_fpga.runs/design_1_caravel_0_0_synth_1/design_1_caravel_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_1_caravel_0_0_utilization_synth.rpt -pb design_1_caravel_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jan  9 06:58:03 2024...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 10 01:16:56 2024...

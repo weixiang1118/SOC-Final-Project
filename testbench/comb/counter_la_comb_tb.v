@@ -162,12 +162,12 @@ module counter_la_comb_tb;
 
 	initial begin
 		// uart
-		//fork 
+		fork 
 		send_data_2;
-		//workload;
+		workload;
 		//wait(checkbits == 16'hAB51);
 		//$display("LA Test passed");
-		//join
+		join
 		//#100000;
 		//$finish;
 		//wait(checkbits == 16'hAB51);

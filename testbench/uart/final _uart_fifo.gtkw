@@ -1,0 +1,52 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Wed Jan 10 05:31:27 2024
+[*]
+[dumpfile] "/home/ubuntu/Desktop/lab-wlos_baseline/testbench/uart/uart.vcd"
+[dumpfile_mtime] "Wed Jan 10 05:26:04 2024"
+[dumpfile_size] 4111435504
+[savefile] "/home/ubuntu/Desktop/lab-wlos_baseline/testbench/uart/final _uart_fifo.gtkw"
+[timestart] 0
+[size] 1848 906
+[pos] -51 -51
+*-31.859043 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] uart_tb.
+[treeopen] uart_tb.uut.
+[treeopen] uart_tb.uut.mprj.
+[sst_width] 233
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 251
+@28
+uart_tb.uut.mprj.wb_clk_i
+uart_tb.uut.mprj.wb_rst_i
+@22
+uart_tb.checkbits[15:0]
+@200
+-tbuart
+@28
+uart_tb.tx_start
+@24
+uart_tb.tx_data[7:0]
+@28
+uart_tb.tx_busy
+uart_tb.uart_rx
+uart_tb.uut.mprj.user_irq[2:0]
+uart_tb.uart_tx
+@24
+uart_tb.tbuart.recv_pattern[7:0]
+@200
+-uart
+@28
+uart_tb.uut.mprj.uart.rx_busy
+uart_tb.uut.mprj.uart.rx
+@24
+uart_tb.uut.mprj.uart.rx_data[7:0]
+@28
+uart_tb.uut.mprj.uart.user_irq[2:0]
+uart_tb.uut.mprj.uart.tx_busy
+uart_tb.uut.mprj.uart.tx
+@24
+uart_tb.uut.mprj.uart.tx_data[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -80,31 +80,125 @@ module user_project_wrapper #(
 
 /*--------------------------------------*/
 /* User project is instantiated  here   */
-/*--------------------------------------*/
 
-uart_bram uartbram(
-    .wb_clk_i   (wb_clk_i),
-    .wb_rst_i   (wb_rst_i),
+wire UART;
+wire BRAM;
+assign UART = ((wbs_adr_i[31:20] == 12'h300) && wbs_cyc_i && wbs_stb_i) ? 1 : 0;
+assign BRAM = ((wbs_adr_i[31:20] == 12'h380) && wbs_cyc_i && wbs_stb_i) ? 1 : 0;
+
+/*---------------UART-----------------*/
+
+
+wire UART_stb_i;
+wire UART_cyc_i;
+wire UART_we_i;
+wire [3:0] UART_sel_i;
+wire [31:0] UART_dat_i;
+wire [31:0] UART_adr_i;
+wire UART_ack_o;
+wire [31:0] UART_dat_o;
+
+
+wire [2:0] UART_irq;
+
+assign UART_stb_i = UART ? wbs_stb_i : 1'b0;
+assign UART_cyc_i = UART ? wbs_cyc_i : 1'b0;
+assign UART_we_i = UART ? wbs_we_i : 1'b0;
+assign UART_sel_i = UART ? wbs_sel_i : 4'b0;
+assign UART_dat_i = UART ? wbs_dat_i : 32'b0;
+assign UART_adr_i = UART ? wbs_adr_i : 32'b0;
+//assign UART_io_in = io_in;
+
+
+uart uart (
+`ifdef USE_POWER_PINS
+	.vccd1(vccd1),	// User area 1 1.8V power
+	.vssd1(vssd1),	// User area 1 digital ground
+`endif
+    .wb_clk_i(wb_clk_i),
+    .wb_rst_i(wb_rst_i),
 
     // MGMT SoC Wishbone Slave
-    .wbs_cyc_i  (wbs_cyc_i),
-    .wbs_stb_i  (wbs_stb_i),
-    .wbs_we_i   (wbs_we_i ),
-    .wbs_sel_i  (wbs_sel_i),
-    .wbs_adr_i  (wbs_adr_i),
-    .wbs_dat_i  (wbs_dat_i),
-    .wbs_ack_o  (wbs_ack_o),
-    .wbs_dat_o  (wbs_dat_o),
+
+    .wbs_stb_i(UART_stb_i),
+    .wbs_cyc_i(UART_cyc_i),
+    .wbs_we_i(UART_we_i),
+    .wbs_sel_i(UART_sel_i),
+    .wbs_dat_i(UART_dat_i),
+    .wbs_adr_i(UART_adr_i),
+    .wbs_ack_o(UART_ack_o),
+    .wbs_dat_o(UART_dat_o),
 
     // IO ports
-    .io_in      (io_in    ),
-    .io_out     (io_out   ),
-    .io_oeb     (io_oeb   ),
+    .io_in  (io_in),
+    .io_out (io_out),
+    .io_oeb (io_oeb),
 
     // irq
-    .irq        (user_irq )
+    .user_irq (user_irq)
 );
+/*---------------BRAM----------------*/
+
+wire [3:0] BRAM_we_i;
+wire BRAM_en;
+wire [31:0] BRAM_dat_i;
+wire [31:0] BRAM_adr_i;
+
+reg BRAM_ack_o;
+wire [31:0] BRAM_dat_o;
+
+assign BRAM_adr_i = BRAM ? wbs_adr_i : 0;
+assign BRAM_dat_i = BRAM ? wbs_dat_i : 0;
+assign BRAM_we_i = BRAM ? (wbs_sel_i & {4{wbs_we_i}}):4'b0;
+assign BRAM_en = BRAM ? 1 : 0;
+
+bram bram (
+    .CLK(wb_clk_i),
+    .WE0(BRAM_we_i),
+    .EN0(BRAM_en),
+    .Di0(BRAM_dat_i),
+    .Do0(BRAM_dat_o),
+    .A0(BRAM_adr_i)
+);
+
+//delay
+
+
+reg [3:0]count;
+
+always@(posedge wb_clk_i or posedge wb_rst_i) begin
+    if(wb_rst_i) begin 
+        BRAM_ack_o <= 0;
+        count <= 0;
+    end
+    else if(BRAM == 1'b1) begin
+        if(count == 10) begin
+            BRAM_ack_o <= 1;
+            count <= 0;
+        end
+        else begin
+            BRAM_ack_o <= 0;
+            count <= count + 1;
+        end
+    end
+    else begin
+        BRAM_ack_o <= 0;
+        count <= 0;
+    end
+end
+/*---------------Output control-----------------*/
+
+
+assign wbs_ack_o = BRAM_ack_o | UART_ack_o;
+assign wbs_dat_o = BRAM_ack_o ? BRAM_dat_o : 
+                    UART_ack_o ? UART_dat_o : 0;
+                    
+
+
 
 endmodule	// user_project_wrapper
 
 `default_nettype wire
+
+//1205
+
