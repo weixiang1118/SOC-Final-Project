@@ -1,4 +1,4 @@
-# WorkLoad Optimize SOC (WLOS) Baseline
+# WorkLoad Optimize SOC (WLOS) Final Project
 
 ### Simulation for FIR, Matrix Mult,qsort,uart
 ```sh
