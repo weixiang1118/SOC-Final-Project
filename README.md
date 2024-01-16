@@ -16,7 +16,7 @@ source run_sim
 ## Verification with Vivado
 ### Synthesis and Generate bitstream
 ```sh
-cd ~/caravel-soc_fpga-lab/lab-wlos_baseline/vivado
+cd /lab-wlos_baseline/vivado
 source run_vivado
 ```
 
